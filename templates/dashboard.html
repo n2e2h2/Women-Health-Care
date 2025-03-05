@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Admin Dashboard - User Health Data</h2>
+        <div>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-success">Refresh Data</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Age</th>
+                    <th>Activity Level</th>
+                    <th>Menstrual Cycle</th>
+                    <th>Medical Conditions</th>
+                    <th>Stress Level</th>
+                    <th>Home-Cooked Meals</th>
+                    <th>Healthcare Access</th>
+                    <th>Healthcare Challenges</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.activity_level }}</td>
+                    <td>{{ user.menstrual_cycle }}</td>
+                    <td>{{ user.medical_conditions }}</td>
+                    <td>{{ user.stress_level }}</td>
+                    <td>{{ user.home_cooked_meals }}</td>
+                    <td>{{ user.healthcare_access }}</td>
+                    <td>{{ user.healthcare_challenges }}</td>
+                    <td>{{ user.comments }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

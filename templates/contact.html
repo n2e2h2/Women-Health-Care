@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - Women's Healthcare{% endblock %}
+
+{% block content %}
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="overlay"></div> <!-- Background Overlay -->
+    <div class="container text-center">
+        <h1 class="contact-title">Contact Us</h1>
+        <p class="contact-subtitle">We'd love to hear from you! Get in touch with us.</p>
+
+        <div class="contact-form-container">
+            <form action="#" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required class="contact-input">
+                <input type="email" name="email" placeholder="Your Email" required class="contact-input">
+                <textarea name="message" placeholder="Your Message" required class="contact-textarea"></textarea>
+                <button type="submit" class="btn btn-primary contact-button">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

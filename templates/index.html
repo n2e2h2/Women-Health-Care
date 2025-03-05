@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Women's Healthcare{% endblock %}
+
+{% block content %}
+<section class="home-section text-center">
+    <div class="container">
+        
+      
+    </div>
+</section>
+
+<!-- Health Details Form -->
+<section class="form-section">
+    <div class="container">
+        <h2 class="text-center">Enter Your Health Details</h2>
+        <form id="healthForm">
+            <label>Age:</label>
+            <input type="number" name="age" required class="form-control"><br>
+        
+            <label>Activity Level:</label>
+            <select name="activity_level" class="form-control">
+                <option value="Sedentary">Sedentary</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Active">Active</option>
+            </select><br>
+        
+            <label>Menstrual Cycle Regularity:</label>
+            <select name="menstrual_cycle" class="form-control">
+                <option value="Regular">Regular</option>
+                <option value="Irregular">Irregular</option>
+            </select><br>
+        
+            <label>Medical Conditions:</label>
+            <input type="text" name="medical_conditions" class="form-control" placeholder="Enter any medical conditions"><br>
+        
+            <label>Stress Level:</label>
+            <select name="stress_level" class="form-control">
+                <option value="Never">Never</option>
+                <option value="Occasionally">Occasionally</option>
+                <option value="Often">Often</option>
+                <option value="Always">Always</option>
+            </select><br>
+        
+            <label>How often do you eat home-cooked meals?</label>
+    <select name="home_cooked_meals" class="form-control">
+        <option>Rarely</option>
+        <option>Few times a week</option>
+        <option>Daily</option>
+    </select><br>
+
+    <label>Do you have access to primary healthcare?</label>
+    <select name="healthcare_access" class="form-control">
+        <option>Yes</option>
+        <option>No</option>
+    </select><br>
+
+    <label>What challenges do you face in accessing healthcare?</label>
+    <input type="text" name="healthcare_challenges" placeholder="e.g., Expensive treatments"><br>
+
+    <button type="submit" style = "margin-top :15px; "> Get Recommendation</button>
+</form>
+        
+
+        <p id="result" class="text-center"></p>
+    </div>
+</section>
+
+<script>
+    document.getElementById("healthForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent page reload
+    
+        var formData = new FormData(this);  // Get form data
+    
+        fetch("/recommend", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.recommendation) {
+                document.getElementById("result").innerHTML = "<b>Recommendation:</b> " + data.recommendation;
+                alert("✅ Your data has been saved successfully!");
+            } else {
+                document.getElementById("result").innerHTML = "<b>Error:</b> " + data.error;
+            }
+        })
+        .catch(error => {
+            document.getElementById("result").innerHTML = "<b>Error:</b> Unable to fetch recommendation.";
+        });
+    });
+    </script>
+    
+{% endblock %}
